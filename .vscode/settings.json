@@ -1,0 +1,51 @@
+{
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "prettier.requireConfig": true,
+  "prettier.useEditorConfig": false,
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": "explicit",
+    "source.fixAll.eslint": "explicit"
+  },
+  "eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "typescript.preferences.importModuleSpecifier": "non-relative",
+  "javascript.preferences.importModuleSpecifier": "non-relative",
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    "**/Thumbs.db": true,
+    ".github": true,
+    ".vscode": true,
+    "dist": true,
+    ".gitignore": true,
+    ".prettierignore": true,
+    ".prettierrc": true,
+    "index.html": true,
+    "eslint.config.js": true,
+    "vite-dashboard-starter.code-workspace": true,
+    "postcss.config.js": true,
+    "node_modules": true,
+    "public": true,
+    "tsconfig.eslint.json": true,
+    "pnpm-lock.yaml": true,
+    "tsconfig.app.json": true,
+    "tsconfig.node.json": true,
+    "README.md": true,
+    "src/vite-env.d.ts": true,
+    "src/main.tsx": true,
+    "src/App.tsx": true
+  },
+  "hide-files.files": []
+}
