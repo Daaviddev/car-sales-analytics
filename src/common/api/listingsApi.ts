@@ -7,33 +7,33 @@ import axiosInstance from './axiosInstance';
 interface ApiResponse {
   listing: {
     id: string;
-    title: string;
-    link: string;
-    price: number;
-    oldPrice: number;
-    priceChangedAt: string;
-    isSold: boolean;
+    title?: string;
+    link?: string;
+    price?: number;
+    oldPrice?: number;
+    priceChangedAt?: string;
+    isSold?: boolean;
     isSoldChangedAt?: string;
-    isPromoted: boolean;
-    excludeFromData: boolean;
+    isPromoted?: boolean;
+    excludeFromData?: boolean;
     car: {
-      id: string;
-      year: number;
-      fuel: string;
-      gear: string;
-      engine: string;
-      power: number;
-      make: string;
-      model: string;
-      tip: string;
-      modelYear: number;
+      id?: string;
+      year?: number;
+      fuel?: string;
+      gear?: string;
+      engine?: string;
+      power?: number;
+      make?: string;
+      model?: string;
+      tip?: string;
+      modelYear?: number;
     };
     listingDetails: {
-      id: string;
-      imageUrl: string;
-      mileage: number;
-      addDate: string;
-      listingIdNumber: string;
+      id?: string;
+      imageUrl?: string;
+      mileage?: number;
+      addDate?: string;
+      listingIdNumber?: string;
     };
   };
 }
@@ -41,40 +41,41 @@ interface ApiResponse {
 const transformToListing = (apiResponse: ApiResponse): Listing => {
   const { listing } = apiResponse;
 
+  console.log('listing:', listing); // Debug log
   if (!listing || !listing.car || !listing.listingDetails) {
     throw new Error('Invalid API response structure');
   }
 
   return {
     listingId: listing.id,
-    listingTitle: listing.title,
-    listingLink: listing.link,
-    listingPrice: listing.price,
-    listingOldPrice: listing.oldPrice,
-    listingPriceChangedAt: new Date(listing.priceChangedAt),
-    listingIsSold: listing.isSold,
+    listingTitle: listing.title || '',
+    listingLink: listing.link || '',
+    listingPrice: listing.price || 0,
+    listingOldPrice: listing.oldPrice || 0,
+    listingPriceChangedAt: new Date(listing.priceChangedAt || new Date()),
+    listingIsSold: listing.isSold || false,
     listingIsSoldChangedAt: listing.isSoldChangedAt
       ? new Date(listing.isSoldChangedAt)
       : new Date(),
-    listingIsPromoted: listing.isPromoted,
-    listingExcludedFromData: listing.excludeFromData,
+    listingIsPromoted: listing.isPromoted || false,
+    listingExcludedFromData: listing.excludeFromData || false,
     listingCar: {
-      carId: listing.car.id,
-      carYear: listing.car.year,
-      carFuel: listing.car.fuel,
-      carGear: listing.car.gear,
-      carEngine: listing.car.engine,
-      carPower: listing.car.power,
-      carMake: listing.car.make,
-      carModel: listing.car.model,
-      carTip: listing.car.tip,
-      carModelYear: listing.car.modelYear,
+      carId: listing.car.id || '',
+      carYear: listing.car.year || 0,
+      carFuel: listing.car.fuel || '',
+      carGear: listing.car.gear || '',
+      carEngine: listing.car.engine || '',
+      carPower: listing.car.power || 0,
+      carMake: listing.car.make || '',
+      carModel: listing.car.model || '',
+      carTip: listing.car.tip || '',
+      carModelYear: listing.car.modelYear || 0,
     },
     listingDetails: {
-      listingDetailsId: listing.listingDetails.id,
-      listingImageUrl: listing.listingDetails.imageUrl,
-      listingMileage: listing.listingDetails.mileage,
-      listingDate: new Date(listing.listingDetails.addDate),
+      listingDetailsId: listing.listingDetails.id || '',
+      listingImageUrl: listing.listingDetails.imageUrl || '',
+      listingMileage: listing.listingDetails.mileage || 0,
+      listingDate: new Date(listing.listingDetails.addDate || new Date()),
       listingIdNumber: Number(listing.listingDetails.listingIdNumber),
     },
   };
@@ -113,7 +114,7 @@ export const fetchAllListingsFromCompany = async (companyId: string): Promise<Li
 
   try {
     const response = await axiosInstance.get(`/listing/company/${companyId}`);
-    //  console.log('Listings fetched successfully:', response.data); // Debug log
+    console.log('Listings fetched successfully:', response.data); // Debug log
 
     return response.data.map((item: ApiResponse) => transformToListing(item));
   } catch (error) {

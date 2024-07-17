@@ -1,11 +1,10 @@
-import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 
+import DashboardHome from '@/pages/DashboardHome/DashboardHome';
+import DashboardSales from '@/pages/DashboardSales/DashboardSales';
 import DashboardLayout from '@layout/ContentLayout/ContentLayout';
 import MainLayout from '@layout/MainLayout/MainLayout';
-
-import DashboardHome from '@/pages/DashboardHome/DashboardHome';
-import DashboardSettings from '@/pages/DashboardSettings/DashboardSettings';
+import React from 'react';
 
 const AppRoutes: React.FC = () => {
   return (
@@ -13,7 +12,7 @@ const AppRoutes: React.FC = () => {
       <Route path="/" element={<MainLayout />}>
         <Route path="dashboard" element={<DashboardLayout />}>
           <Route path="home" element={<DashboardHome />} />
-          <Route path="settings" element={<DashboardSettings />} />
+          <Route path="settings" element={<DashboardSales />} />
         </Route>
       </Route>
     </Routes>

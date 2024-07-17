@@ -1,5 +1,5 @@
-import type { LucideIcon } from 'lucide-react';
 import { Bookmark, LayoutGrid, Settings, SquarePen, Tag, Users } from 'lucide-react';
+import type { LucideIcon } from 'lucide-react';
 
 interface Submenu {
   href: string;
